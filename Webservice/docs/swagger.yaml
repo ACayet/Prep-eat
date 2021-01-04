@@ -1,0 +1,385 @@
+openapi: 3.0.1
+info:
+  title: Prep-eat
+  version: 1.4.0
+  description: 'Provides a recipes for a specified ammount of Kcal or by specifiying ingredients'
+  license:
+    name: MIT
+    url: 'https://choosealicense.com/licenses/mit/'
+servers:
+  - url: 'https://prep-eat.tk/api/v1'
+  - url: 'https://localhost:8443/api/v1'
+tags:
+  - name: Users
+    description: User management interface
+    externalDocs:
+      description: Find out more
+      url: 'http://swagger.io'
+  - name: Recipes
+    description: Recipes management interface
+  - name: Favorites
+    description: User's favorites management interface
+  - name: Meals
+    description: Interface for meals suggestion request
+paths:
+  /users/login:
+    post:
+      tags: 
+        - Users
+      summary: Login to the api
+      requestBody:
+        required: true
+        description: Username and password used to login
+        content:
+          application/json:
+            schema:
+              required: 
+                - username
+                - password
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: A token to be used in an authorization header a status and a user
+          content:
+            application/json:
+              schema:
+                properties:
+                  success:
+                    type: boolean
+                  status:
+                    type: string
+                  token:
+                    type: string
+                    description: Contain the jwt token to authenticate on diverse uri
+                    format: byte
+                  user:
+                    type: object
+                    properties:
+                      firstName:
+                        type: string
+                      lastName:
+                        type: string
+                      username:
+                        type: string
+                        description: username for the user, needs to be unique.
+        '404':
+          description: Wrong credentials or the user does not exists
+  /users/register:
+    post:
+      tags:
+        - Users
+      summary: Register a new user
+      requestBody:
+        required: true
+        description: User to be registered
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: A boolean for success or not of the request
+          content:
+            application/json:
+              schema:
+                properties:
+                  success:
+                    type: boolean
+  /recipes:
+    get:
+      tags:
+        - Recipes
+      summary: Request every recipes of the api
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Json array of every recipes in database
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recipe'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+    post:
+      tags:
+        - Recipes
+      summary: Add a recipe to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Recipe'
+      security:
+        - bearerAuth: []
+      responses:
+        '201':
+          description: A json of the recipe added to the database
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipe'    
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+  /recipes/{recipeId}:
+    get:
+      tags:
+        - Recipes
+      summary: Get the recipe matching the provided id
+      parameters:
+        - in: path
+          name: recipeId
+          schema:
+            type: string
+          required: true
+          description: MongoDB String ID of the recipe to get
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: An object containing the found recipe
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipe'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+    put:
+      tags:
+        - Recipes
+      summary: Update the recipe matching the provided id
+      parameters:
+        - in: path
+          name: recipeId
+          schema:
+            type: string
+          required: true
+          description: MongoDB String ID of the recipe to update
+      requestBody:
+        required: true
+        description: Recipe to be updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Recipe'
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: A object containing the updated recipe
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipe'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+    delete:
+      tags:
+        - Recipes
+      summary: Delete the recipe matchin the provided id
+      parameters:
+        - in: path
+          name: recipeId
+          schema:
+            type: string
+          required: true
+          description: MongoDB String ID of the recipe to delete
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: A object containing the deleted recipe
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipe'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+  /favorites:
+    get:
+      tags:
+        - Favorites
+      summary: Get every recipes the user has added in favorites
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Json array of every recipes in the favorites of the user connected
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recipe'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+    post:
+      tags:
+        - Favorites
+      summary: Add a set of recipe to your favorites by MongoDB String ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required: 
+                - recipeIds
+              properties:
+                recipeIds:
+                  type: array
+                  items:
+                    description: MongoDB String ID of the recipe to add
+                    type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Json array of the the Recipe ids in the user's favorites
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string                  
+        '401':
+           $ref: '#/components/responses/UnauthorizedError'
+  /favorites/{recipeId}:
+    delete:
+      tags:
+        - Favorites
+      summary: Delete a recipe from the user's favorites
+      parameters:
+        - in: path
+          name: recipeId
+          schema:
+            type: string
+          required: true
+          description: MongoDB String ID of the recipe to update
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Json array of the the Recipe ids in the user's favorites
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string                  
+        '401':
+           $ref: '#/components/responses/UnauthorizedError'
+  /meals/calories/{calorieNumber}:
+    get:
+      tags:
+        - Meals
+      summary: Get a array of 2 recipes for a given total amount of calories
+      parameters:
+        - in: path
+          name: colorieNumber
+          schema:
+            type: number
+          required: true
+          description: Number of calories that 
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Json array of the the Recipe ids in the user's favorites
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recipe'     
+        '401':
+           $ref: '#/components/responses/UnauthorizedError'             
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - username
+        - password
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+          description: Email for the user, needs to be unique.
+        username:
+          type: string
+          description: username for the user, needs to be unique.
+        password:
+          type: string
+          format: password
+        admin:
+          type: boolean
+        favorites:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recipe'
+      example:
+         firstName: Arthur
+         lastName: Cayet
+         username: acayet
+         password: Password_123
+         admin: false
+    Recipe:
+      type: object
+      required:
+        - title
+        - ingredients
+        - directions
+        - calories
+      properties:
+        title:
+          type: string
+        desc:
+          type: string
+        categories:
+          type: array
+          items:
+            type: string
+        ingredients:
+          type: array
+          items:
+            type: string
+        directions:
+          type: array
+          items:
+            type: string
+        calories:
+          type: number
+        fat:
+          type: number
+        protein:
+          type: number
+        sodium:
+          type: number
+        rating:
+          type: number
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    ForbiddenError:
+      description: The user doesn't have the right permissions on his account
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
