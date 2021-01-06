@@ -12,6 +12,13 @@ Lorem Ipsum
 
 We adapted a backend project with security (SSL, CORS, Authentication, API Key, etc...) with new methods to match our project idea (A cooking application)
 
+### Requirements
+
+You need to have these programs installated in order for the back end to work succesfully :
+
+* MongoDB
+* NodeJS with npm
+
 ### Environment Variables (.env)
 
 Create a `.env` file containing the following keys :
