@@ -17,10 +17,14 @@ import { JwtModule } from '@auth0/angular-jwt';
 
 /* Http */
 import { HttpClientModule } from '@angular/common/http';
+import { AccueilComponent } from './receipe/accueil/accueil.component';
+import { NotFound404Component } from './not-found404/not-found404.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AccueilComponent,
+    NotFound404Component,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {
-          return JSON.parse(localStorage.getItem('USER')).jwtToken;
+          return JSON.parse(sessionStorage.getItem('USER')).jwtToken;
         },
         allowedDomains: ['localhost:8443'],
         disallowedRoutes: ['https://localhost:8443/api/v1/users/login','https://localhost:8443/api/v1/users/register'],

@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { User } from  './user';
-import jwt_decode from "jwt-decode";
+
+import { getDecodedAccessToken } from '../utils/utils'
 
 import { environment } from '../../environments/environment'
 import { Router } from '@angular/router';
@@ -23,10 +24,11 @@ export class AuthService {
           lastName: data.user.lastName,
           username: data.user.username,
           jwtToken: data.token,
-          tokenExp: jwt_decode(data.token)['exp']
+          tokenExp: getDecodedAccessToken(data.token)['exp']
         }
-        localStorage.setItem('USER', JSON.stringify(res));
+        sessionStorage.setItem('USER', JSON.stringify(res));
         this.routeur.navigate(["/accueil"]);
+        location.reload()
       },
       (err) => {
         console.log(err.message);
@@ -55,11 +57,11 @@ export class AuthService {
   }
   
   logout() {
-    localStorage.removeItem('USER');
+    sessionStorage.removeItem('USER');
   }
 
-  public get loggedIn(): boolean{
-    return localStorage.getItem('USER') !==  null;
+  public get isLoggedIn(): boolean{
+    return sessionStorage.getItem('USER') !==  null;
   }
 
 }
