@@ -1,0 +1,22 @@
+  
+version: "3"
+services: 
+    webservice:
+        build: .
+        container_name: "webservice-node"
+        ports:
+          - "8080:8443"
+        depends_on:
+          - db
+        links:
+          - db
+        environment:
+          JWT_TOKEN_SECRETKEY: 12345-67890-12345-67890
+          JWT_TOKEN_TTL: 86400
+          MONGO_URI: mongodb://db/prep-eat-db
+    db:
+        image: mongo:4.2.6
+        volumes: 
+          - ./mongo-volume:/data/db
+        environment:
+          MONGO_INITDB_DATABASE: prep-eat-db

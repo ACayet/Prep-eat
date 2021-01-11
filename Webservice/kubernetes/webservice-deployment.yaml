@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: webservice
+  name: webservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: webservice
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: webservice
+    spec:
+      containers:
+      - env:
+        - name: JWT_TOKEN_SECRETKEY
+          value: 12345-67890-12345-67890
+        - name: JWT_TOKEN_TTL
+          value: "86400"
+        - name: MONGO_URI
+          value: mongodb://db/prep-eat-db
+        image: psyborg321/prepeat-webservice:latest
+        imagePullPolicy: Always
+        name: webservice-node
+        ports:
+        - containerPort: 8443
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}
