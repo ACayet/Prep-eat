@@ -2,7 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { NotFound404Component } from './not-found404/not-found404.component';
-import { AccueilComponent } from './receipe/accueil/accueil.component';
+import { AccueilComponent } from './recipe/accueil/accueil.component';
 
 
 const routes: Routes = [

@@ -17,8 +17,10 @@ import { JwtModule } from '@auth0/angular-jwt';
 
 /* Http */
 import { HttpClientModule } from '@angular/common/http';
-import { AccueilComponent } from './receipe/accueil/accueil.component';
+import { AccueilComponent } from './recipe/accueil/accueil.component';
 import { NotFound404Component } from './not-found404/not-found404.component';
+
+import { environment } from '../environments/environment'
 
 @NgModule({
   declarations: [
@@ -36,10 +38,11 @@ import { NotFound404Component } from './not-found404/not-found404.component';
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {
+          
           return JSON.parse(sessionStorage.getItem('USER')).jwtToken;
         },
-        allowedDomains: ['localhost:8443'],
-        disallowedRoutes: ['https://localhost:8443/api/v1/users/login','https://localhost:8443/api/v1/users/register'],
+        allowedDomains: ["prep-eat.ml"],
+        disallowedRoutes: [environment.apiURL + '/users/login',environment.apiURL + '/users/register'],
         skipWhenExpired: true
       }   
     })
