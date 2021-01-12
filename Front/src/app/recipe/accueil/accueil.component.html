@@ -1,4 +1,15 @@
+<div>
+    <Button class="login-wrapper "  fxLayout="column" fxLayoutAlign="center center">
+        Add a Recipe
+    </Button>
+</div>
 <div class="login-wrapper " fxLayout="column" fxLayoutAlign="center center"> 
+    <div>
+        <Button class="login-wrapper "  fxLayout="column" fxLayoutAlign="center center">
+            Add a Recipe
+        </Button>
+    </div>
+    <mat-spinner *ngIf="recipesDefined"></mat-spinner>
     <ngb-accordion class="d-flex p-2 w-75 mt-5 flex-column" [closeOthers]="true" #a="ngbAccordion">
         <ngb-panel *ngFor="let recipe of recipes | slice: (page-1) * pageSize : page * pageSize">
             <ng-template ngbPanelHeader>
@@ -22,14 +33,21 @@
                 </div>
             </ng-template>
             <ng-template ngbPanelContent>
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
-                aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-                occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-                labore sustainable VHS.
+                <p>
+                    Description : {{recipe.desc}}
+                </p>
+                <div>
+                    <h1>Categories :</h1>
+                    <p><span *ngFor="let categorie of recipe.categories">{{categorie}}, </span></p>
+                </div>
+                <p>
+                    Nutritionnal infos : {{recipe.calories}} kcal, {{recipe.fat}}g of fat, {{recipe.protein}}g of proteins, {{recipe.sodium}}mg of salt
+                </p>
+                <p>
+                    Rating : {{recipe.rating}}/5
+                </p>
             </ng-template>
         </ngb-panel>
     </ngb-accordion>
-    <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize" [collectionSize]="recipes.length" [maxSize]="7" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+    <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize" [collectionSize]="recipesLength" [maxSize]="7" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
 </div>
