@@ -20,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AccueilComponent } from './recipe/accueil/accueil.component';
 import { NotFound404Component } from './not-found404/not-found404.component';
 
-import { environment } from '../environments/environment'
+import { environment } from '../environments/environment';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { environment } from '../environments/environment'
         disallowedRoutes: [environment.apiURL + '/users/login',environment.apiURL + '/users/register'],
         skipWhenExpired: true
       }   
-    })
+    }),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent],

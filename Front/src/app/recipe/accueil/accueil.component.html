@@ -1,3 +1,35 @@
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center"> 
-    accueil works
+<div class="login-wrapper " fxLayout="column" fxLayoutAlign="center center"> 
+    <ngb-accordion class="d-flex p-2 w-75 mt-5 flex-column" [closeOthers]="true" #a="ngbAccordion">
+        <ngb-panel *ngFor="let recipe of recipes | slice: (page-1) * pageSize : page * pageSize">
+            <ng-template ngbPanelHeader>
+                <div class="d-flex align-items-center justify-content-between">
+                    <button
+                        ngbPanelToggle
+                        class="btn btn-link ml-2"
+                        (click)="disabled = !disabled"
+                    >
+                        {{recipe.title}}   
+                    </button>
+                    <div>
+                        <button
+                            ngbPanelToggle
+                            class="btn btn-outline-primary ml-2"
+                            (click)="disabled = !disabled"
+                        >
+                            {{disabled ? "▲" : "▼"}}
+                        </button>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
+                aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+                occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+                labore sustainable VHS.
+            </ng-template>
+        </ngb-panel>
+    </ngb-accordion>
+    <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize" [collectionSize]="recipes.length" [maxSize]="7" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
 </div>

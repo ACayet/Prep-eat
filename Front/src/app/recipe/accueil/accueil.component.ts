@@ -9,11 +9,21 @@ import { RecipeService } from '../recipe.service';
 export class AccueilComponent implements OnInit {
 
   recipes
+  page = 1;
+  pageSize=13;
 
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit(): void {
-    this.recipes = this.recipeService.getAllRecipes();
+    this.recipeService.getAllRecipes().subscribe(
+      (data) => {
+        console.log(data[1])
+        this.recipes = data;
+      },
+      (err) => {
+        console.log(err.message);
+      }
+    );
   }
 
 }
