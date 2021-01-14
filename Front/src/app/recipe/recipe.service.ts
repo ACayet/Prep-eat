@@ -13,4 +13,8 @@ export class RecipeService {
   getAllRecipes(){
     return this.httpClient.get<any>(environment.apiURL + '/recipes',  { observe: "body" })
   }
+
+  addRecipe(data) {
+    return this.httpClient.post<any>(environment.apiURL + '/recipes', data, {observe: "body"})
+  }
 }

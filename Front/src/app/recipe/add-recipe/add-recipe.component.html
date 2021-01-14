@@ -1,0 +1,65 @@
+<Button class="btn btn-outline-success" (click)="openVerticallyCentered(addRecipe)">
+    + Add a Recipe
+</Button>
+<ng-template #addRecipe let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Add Recipe</h4>
+        <button
+            type="button"
+            class="close"
+            aria-label="Close"
+            (click)="modal.dismiss('Cross click')"
+        >
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form
+            [formGroup]="addRecipeForm"
+            (submit)="onSubmit(addRecipeForm.value)"
+        >
+            <div
+                class="wrap-input1 validate-input"
+                data-validate="Title is required"
+            >
+                <input
+                    id="name"
+                    class="input1"
+                    type="text"
+                    name="title"
+                    placeholder="Title"
+                    formControlName="title"
+                    required
+                />
+                <span class="shadow-input1"></span>
+            </div>
+
+            <div
+                class="wrap-input1 validate-input"
+                data-validate="Title is misformatted"
+            >
+                <input
+                    id="desc"
+                    class="input1"
+                    type="text"
+                    name="desc"
+                    placeholder="Description"
+                    formControlName="desc"
+                />
+                <span class="shadow-input1"></span>
+            </div>
+
+            <button
+                class="button"
+                class="btn btn-success float-right"
+                type="submit"
+                [disabled]="!addRecipeForm.valid"
+            >
+                Add
+            </button>
+            <div *ngIf="success" class="alert alert-success" role="alert">
+                Ajout de {{ person.name }} réussi !
+            </div>
+        </form>
+    </div>
+</ng-template>

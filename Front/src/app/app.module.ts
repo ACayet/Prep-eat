@@ -21,13 +21,16 @@ import { AccueilComponent } from './recipe/accueil/accueil.component';
 import { NotFound404Component } from './not-found404/not-found404.component';
 
 import { environment } from '../environments/environment';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddRecipeComponent } from './recipe/add-recipe/add-recipe.component'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     AccueilComponent,
     NotFound404Component,
+    AddRecipeComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
     BrowserAnimationsModule,
     AngularMaterialModule,
     FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     JwtModule.forRoot({
       config: {
