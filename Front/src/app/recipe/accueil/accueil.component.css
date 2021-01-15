@@ -1,3 +1,7 @@
 .infosRecipe {
     display: inline;
 }
+
+.directionList {
+    list-style-type: '- ';
+}

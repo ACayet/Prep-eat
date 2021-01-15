@@ -24,6 +24,7 @@ import { environment } from '../environments/environment';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddRecipeComponent } from './recipe/add-recipe/add-recipe.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RemoveRecipeComponent } from './recipe/remove-recipe/remove-recipe.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AccueilComponent,
     NotFound404Component,
     AddRecipeComponent,
+    RemoveRecipeComponent,
   ],
   imports: [
     BrowserModule,

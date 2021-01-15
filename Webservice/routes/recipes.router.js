@@ -6,12 +6,12 @@ const router = express.Router();
 router
   .route("/")
   .get(authenticate.isAuthenticated, authenticate.isUser, controller.getAll)
-  .post(authenticate.isAuthenticated, authenticate.isUser, authenticate.isAdmin, controller.addOne);
+  .post(authenticate.isAuthenticated, authenticate.isUser, controller.addOne);
 
 router
   .route("/:id")
   .get(authenticate.isAuthenticated, authenticate.isUser, controller.getOne)
-  .put(authenticate.isAuthenticated, authenticate.isUser, authenticate.isAdmin, controller.updateOne)
-  .delete(authenticate.isAuthenticated, authenticate.isUser, authenticate.isAdmin, controller.deleteOne);
+  .put(authenticate.isAuthenticated, authenticate.isUser, controller.updateOne)
+  .delete(authenticate.isAuthenticated, authenticate.isUser, controller.deleteOne);
 
 module.exports = router;

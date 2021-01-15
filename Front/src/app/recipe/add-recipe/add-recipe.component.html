@@ -36,7 +36,7 @@
 
             <div
                 class="wrap-input1 validate-input"
-                data-validate="Title is misformatted"
+                data-validate="Description is misformatted"
             >
                 <input
                     id="desc"
@@ -48,17 +48,87 @@
                 />
                 <span class="shadow-input1"></span>
             </div>
-
+            <div
+                class="wrap-input1 validate-input"
+                data-validate="Calories is required"
+            >
+                <input
+                    id="calories"
+                    class="input1"
+                    type="text"
+                    name="calories"
+                    placeholder="Calories (in Kcal)"
+                    formControlName="calories"
+                />
+                <span class="shadow-input1"></span>
+            </div>
+            <div
+                class="wrap-input1 validate-input"
+                data-validate="Fat is misformatted"
+            >
+                <input
+                    id="fat"
+                    class="input1"
+                    type="text"
+                    name="fat"
+                    placeholder="Fat (in g)"
+                    formControlName="fat"
+                />
+                <span class="shadow-input1"></span>
+            </div>
+            <div
+                class="wrap-input1 validate-input"
+                data-validate="Protein is misformatted"
+            >
+                <input
+                    id="protein"
+                    class="input1"
+                    type="text"
+                    name="protein"
+                    placeholder="Protein (in g)"
+                    formControlName="protein"
+                />
+                <span class="shadow-input1"></span>
+            </div>
+            <div
+                class="wrap-input1 validate-input"
+                data-validate="Sodium is misformatted"
+            >
+                <input
+                    id="sodium"
+                    class="input1"
+                    type="text"
+                    name="sodium"
+                    placeholder="Sodium (in mg)"
+                    formControlName="sodium"
+                />
+                <span class="shadow-input1"></span>
+            </div>
+            <div
+                class="wrap-input1 validate-input"
+                data-validate="Rating is misformatted"
+            >
+                <input
+                    id="rating"
+                    class="input1"
+                    type="text"
+                    name="rating"
+                    placeholder="Rating"
+                    formControlName="rating"
+                />
+                <span class="shadow-input1"></span>
+            </div>
             <button
                 class="button"
                 class="btn btn-success float-right"
+                ngbAutofocus
                 type="submit"
                 [disabled]="!addRecipeForm.valid"
             >
                 Add
             </button>
             <div *ngIf="success" class="alert alert-success" role="alert">
-                Ajout de {{ person.name }} réussi !
+                Added {{ recipe.title }} successfully !
             </div>
         </form>
     </div>
