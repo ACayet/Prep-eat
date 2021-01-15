@@ -25,6 +25,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddRecipeComponent } from './recipe/add-recipe/add-recipe.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RemoveRecipeComponent } from './recipe/remove-recipe/remove-recipe.component';
+import { EditRecipeComponent } from './recipe/edit-recipe/edit-recipe.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { RemoveRecipeComponent } from './recipe/remove-recipe/remove-recipe.comp
     NotFound404Component,
     AddRecipeComponent,
     RemoveRecipeComponent,
+    EditRecipeComponent,
   ],
   imports: [
     BrowserModule,

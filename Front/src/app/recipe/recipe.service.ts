@@ -22,7 +22,7 @@ export class RecipeService {
     return this.httpClient.delete(environment.apiURL + `/recipes/${recipeId}`, {observe: "body"})
   }
 
-  editRecipe(recipeId){
-    return this.httpClient.put(environment.apiURL + `/recipes/${recipeId}`, {observe: "body"})
+  editRecipe(recipeId, editedData){
+    return this.httpClient.put(environment.apiURL + `/recipes/${recipeId}`, editedData, {observe: "body"})
   }
 }

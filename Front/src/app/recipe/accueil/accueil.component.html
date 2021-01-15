@@ -2,8 +2,10 @@
     <div class="p-3">
         <app-add-recipe></app-add-recipe>
     </div>
-    <mat-spinner *ngIf="recipesDefined"></mat-spinner>
-    <ngb-accordion #accordion class="d-flex p-3 w-75 mt-2 flex-column" [closeOthers]="true" #a="ngbAccordion">
+    <div class="spinner-border text-primary spinDimension mt-3" role="status" *ngIf="recipesDefined">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <ngb-accordion #accordion class="d-flex p-3 w-75 flex-column" [closeOthers]="true" #a="ngbAccordion">
         <ngb-panel *ngFor="let recipe of recipes | slice: (page-1) * pageSize : page * pageSize, let i=index">
             <ng-template ngbPanelHeader>
                 <div class="d-flex align-items-center justify-content-between">    
@@ -15,11 +17,7 @@
                         {{recipe.title}}   
                     </button>
                     <div class="d-flex align-items-center justify-content-between">
-                        <button class="btn btn-sm btn-outline-warning ml-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                            </svg>
-                        </button>
+                        <app-edit-recipe [recipe]=recipe></app-edit-recipe>
                         <app-remove-recipe [recipe]=recipe></app-remove-recipe>
                         <button ngbPanelToggle class="btn btn-sm btn-outline-primary ml-2">
                             {{accordion.panels._results[i].isOpen ? "▲" : "▼"}}

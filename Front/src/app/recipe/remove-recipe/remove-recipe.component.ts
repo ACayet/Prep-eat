@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RecipeService } from '../recipe.service';
 
@@ -9,7 +10,7 @@ import { RecipeService } from '../recipe.service';
 })
 export class RemoveRecipeComponent implements OnInit {
 
-  constructor(private modalService: NgbModal, private recipeService: RecipeService) { }
+  constructor(private modalService: NgbModal, private recipeService: RecipeService, private router: Router) { }
 
   @Input() recipe: any;
 
@@ -20,7 +21,6 @@ export class RemoveRecipeComponent implements OnInit {
 
   openVerticallyCentered(content){
     this.modalService.open(content, { centered: true }).result.then((result) => {
-      console.log(this.recipe._id);
       this.recipeService.removeRecipe(this.recipe._id).subscribe((data) => {
         location.reload();
       }),

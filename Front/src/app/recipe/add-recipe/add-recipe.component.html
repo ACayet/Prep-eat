@@ -4,24 +4,13 @@
 <ng-template #addRecipe let-modal>
     <div class="modal-header">
         <h4 class="modal-title">Add Recipe</h4>
-        <button
-            type="button"
-            class="close"
-            aria-label="Close"
-            (click)="modal.dismiss('Cross click')"
-        >
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
-        <form
-            [formGroup]="addRecipeForm"
-            (submit)="onSubmit(addRecipeForm.value)"
-        >
-            <div
-                class="wrap-input1 validate-input"
-                data-validate="Title is required"
-            >
+        <form [formGroup]="addRecipeForm" (submit)="onSubmit(addRecipeForm.value)">
+            <div class="wrap-input1 validate-input" data-validate="Title is required">
                 <input
                     id="name"
                     class="input1"
@@ -33,11 +22,7 @@
                 />
                 <span class="shadow-input1"></span>
             </div>
-
-            <div
-                class="wrap-input1 validate-input"
-                data-validate="Description is misformatted"
-            >
+            <div class="wrap-input1 validate-input" data-validate="Description is misformatted">
                 <input
                     id="desc"
                     class="input1"
@@ -48,87 +33,97 @@
                 />
                 <span class="shadow-input1"></span>
             </div>
-            <div
-                class="wrap-input1 validate-input"
-                data-validate="Calories is required"
-            >
+            <div class="wrap-input1 validate-input" data-validate="Categories is misformatted">
+                <textarea
+                    id="categories"
+                    class="input1"
+                    type="text"
+                    name="categories"
+                    placeholder="Categories (Separate each categories with a ';')"
+                    formControlName="categories"
+                ></textarea>
+                <span class="shadow-input1"></span>
+            </div>
+            <div class="wrap-input1 validate-input" data-validate="Ingredients is misformatted">
+                <textarea
+                    id="ingredients"
+                    class="input1"
+                    type="text"
+                    name="ingredients"
+                    placeholder="Ingredients (Separate each ingredients with a ';')"
+                    formControlName="ingredients"
+                ></textarea>
+                <span class="shadow-input1"></span>
+            </div>
+            <div class="wrap-input1 validate-input" data-validate="Directions is misformatted">
+                <textarea
+                    id="directions"
+                    class="input1"
+                    type="text"
+                    name="directions"
+                    placeholder="Directions (Separate each directions with a ';')"
+                    formControlName="directions"
+                ></textarea>
+                <span class="shadow-input1"></span>
+            </div>
+            <div class="wrap-input1 validate-input" data-validate="Calories is required">
                 <input
                     id="calories"
                     class="input1"
-                    type="text"
+                    type="number"
                     name="calories"
                     placeholder="Calories (in Kcal)"
                     formControlName="calories"
                 />
                 <span class="shadow-input1"></span>
             </div>
-            <div
-                class="wrap-input1 validate-input"
-                data-validate="Fat is misformatted"
-            >
+            <div class="wrap-input1 validate-input" data-validate="Fat is misformatted">
                 <input
                     id="fat"
                     class="input1"
-                    type="text"
+                    type="number"
                     name="fat"
                     placeholder="Fat (in g)"
                     formControlName="fat"
                 />
                 <span class="shadow-input1"></span>
             </div>
-            <div
-                class="wrap-input1 validate-input"
-                data-validate="Protein is misformatted"
-            >
+            <div class="wrap-input1 validate-input" data-validate="Protein is misformatted">
                 <input
                     id="protein"
                     class="input1"
-                    type="text"
+                    type="number"
                     name="protein"
                     placeholder="Protein (in g)"
                     formControlName="protein"
                 />
                 <span class="shadow-input1"></span>
             </div>
-            <div
-                class="wrap-input1 validate-input"
-                data-validate="Sodium is misformatted"
-            >
+            <div class="wrap-input1 validate-input" data-validate="Sodium is misformatted">
                 <input
                     id="sodium"
                     class="input1"
-                    type="text"
+                    type="number"
                     name="sodium"
                     placeholder="Sodium (in mg)"
                     formControlName="sodium"
                 />
                 <span class="shadow-input1"></span>
             </div>
-            <div
-                class="wrap-input1 validate-input"
-                data-validate="Rating is misformatted"
-            >
+            <div class="wrap-input1 validate-input" data-validate="Rating is misformatted">
                 <input
                     id="rating"
                     class="input1"
-                    type="text"
+                    type="number"
                     name="rating"
                     placeholder="Rating"
                     formControlName="rating"
                 />
                 <span class="shadow-input1"></span>
             </div>
-            <button
-                class="button"
-                class="btn btn-success float-right"
-                ngbAutofocus
-                type="submit"
-                [disabled]="!addRecipeForm.valid"
-            >
-                Add
-            </button>
+            <button class="button" class="btn btn-success float-right" ngbAutofocus type="submit" [disabled]="!addRecipeForm.valid">Add Recipe</button>
             <div *ngIf="success" class="alert alert-success" role="alert">
-                Added {{ recipe.title }} successfully !
+                Added {{ addedRecipe.title }} successfully !
             </div>
         </form>
     </div>

@@ -5,3 +5,9 @@
 .directionList {
     list-style-type: '- ';
 }
+
+.spinDimension {
+    width: 13rem;
+    height: 13rem;
+    border-width: 0.5rem
+}
