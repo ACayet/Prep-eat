@@ -10,7 +10,7 @@
     </div>
     <div class="modal-body">
         <form [formGroup]="addRecipeForm" (submit)="onSubmit(addRecipeForm.value)">
-            <div class="wrap-input1 validate-input" data-validate="Title is required">
+            <mat-form-field class="wrap-input1 validate-input" data-validate="Title is required"> 
                 <input
                     id="name"
                     class="input1"
@@ -18,11 +18,11 @@
                     name="title"
                     placeholder="Title"
                     formControlName="title"
+                    matInput
                     required
                 />
-                <span class="shadow-input1"></span>
-            </div>
-            <div class="wrap-input1 validate-input" data-validate="Description is misformatted">
+            </mat-form-field>
+            <mat-form-field class="wrap-input1 validate-input" data-validate="Description is misformatted">
                 <input
                     id="desc"
                     class="input1"
@@ -30,10 +30,10 @@
                     name="desc"
                     placeholder="Description"
                     formControlName="desc"
+                    matInput
                 />
-                <span class="shadow-input1"></span>
-            </div>
-            <div class="wrap-input1 validate-input" data-validate="Categories is misformatted">
+            </mat-form-field>
+            <mat-form-field class="wrap-input1 validate-input" data-validate="Categories is misformatted">
                 <textarea
                     id="categories"
                     class="input1"
@@ -41,10 +41,10 @@
                     name="categories"
                     placeholder="Categories (Separate each categories with a ';')"
                     formControlName="categories"
+                    matInput
                 ></textarea>
-                <span class="shadow-input1"></span>
-            </div>
-            <div class="wrap-input1 validate-input" data-validate="Ingredients is misformatted">
+            </mat-form-field>
+            <mat-form-field class="wrap-input1 validate-input" data-validate="Ingredients is misformatted">
                 <textarea
                     id="ingredients"
                     class="input1"
@@ -52,10 +52,11 @@
                     name="ingredients"
                     placeholder="Ingredients (Separate each ingredients with a ';')"
                     formControlName="ingredients"
+                    matInput
+                    required
                 ></textarea>
-                <span class="shadow-input1"></span>
-            </div>
-            <div class="wrap-input1 validate-input" data-validate="Directions is misformatted">
+            </mat-form-field>
+            <mat-form-field class="wrap-input1 validate-input" data-validate="Directions is misformatted">
                 <textarea
                     id="directions"
                     class="input1"
@@ -63,66 +64,69 @@
                     name="directions"
                     placeholder="Directions (Separate each directions with a ';')"
                     formControlName="directions"
+                    matInput
+                    required
                 ></textarea>
-                <span class="shadow-input1"></span>
-            </div>
-            <div class="wrap-input1 validate-input" data-validate="Calories is required">
+            </mat-form-field>
+            <mat-form-field class="wrap-input2 validate-input" data-validate="Calories is required">
                 <input
                     id="calories"
-                    class="input1"
+                    class="input2"
                     type="number"
                     name="calories"
                     placeholder="Calories (in Kcal)"
                     formControlName="calories"
+                    matInput
+                    required
                 />
-                <span class="shadow-input1"></span>
-            </div>
-            <div class="wrap-input1 validate-input" data-validate="Fat is misformatted">
+            </mat-form-field>
+            <mat-form-field class="wrap-input2 validate-input" data-validate="Fat is misformatted">
                 <input
                     id="fat"
-                    class="input1"
+                    class="input2"
                     type="number"
                     name="fat"
-                    placeholder="Fat (in g)"
+                    placeholder="Fat (in gm)"
                     formControlName="fat"
+                    matInput
                 />
-                <span class="shadow-input1"></span>
-            </div>
-            <div class="wrap-input1 validate-input" data-validate="Protein is misformatted">
+            </mat-form-field>
+            <mat-form-field class="wrap-input2 validate-input" data-validate="Protein is misformatted">
                 <input
                     id="protein"
-                    class="input1"
+                    class="input2"
                     type="number"
                     name="protein"
-                    placeholder="Protein (in g)"
+                    placeholder="Protein (in gm)"
                     formControlName="protein"
+                    matInput
                 />
-                <span class="shadow-input1"></span>
-            </div>
-            <div class="wrap-input1 validate-input" data-validate="Sodium is misformatted">
+            </mat-form-field>
+            <mat-form-field class="wrap-input2 validate-input" data-validate="Sodium is misformatted">
                 <input
                     id="sodium"
-                    class="input1"
+                    class="input2"
                     type="number"
                     name="sodium"
                     placeholder="Sodium (in mg)"
                     formControlName="sodium"
+                    matInput
                 />
-                <span class="shadow-input1"></span>
-            </div>
-            <div class="wrap-input1 validate-input" data-validate="Rating is misformatted">
+            </mat-form-field>
+            <mat-form-field class="wrap-input2 validate-input" data-validate="Rating is misformatted">
                 <input
                     id="rating"
-                    class="input1"
+                    class="input2"
                     type="number"
                     name="rating"
                     placeholder="Rating"
                     formControlName="rating"
+                    matInput
                 />
-                <span class="shadow-input1"></span>
-            </div>
+            </mat-form-field>
+            <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
             <button class="button" class="btn btn-success float-right" ngbAutofocus type="submit" [disabled]="!addRecipeForm.valid">Add Recipe</button>
-            <div *ngIf="success" class="alert alert-success" role="alert">
+            <div *ngIf="success" class="alert alert-success mt-2" role="alert">
                 Added {{ addedRecipe.title }} successfully !
             </div>
         </form>

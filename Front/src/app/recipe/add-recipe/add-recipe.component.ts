@@ -34,7 +34,7 @@ export class AddRecipeComponent implements OnInit {
   }
 
   openVerticallyCentered(content) {
-    this.modalService.open(content, { centered: true }).result.then((result) => {},
+    this.modalService.open(content, { centered: true, size: 'lg' }).result.then((result) => {},
     (dismiss) => {
       this.addRecipeForm.reset()
     });

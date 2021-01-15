@@ -1,0 +1,83 @@
+input {
+    outline: none;
+    border: none;
+}
+
+textarea{
+    outline: none;
+    border: none;
+}
+
+.input1 {
+    display: block;
+    width: 100%;
+    background: #e6e6e6;
+    font-size: 18px;
+    line-height: 1;
+    color: #666666;
+}
+
+.input2{
+    display: inline-block;
+    width: 100%;
+    background: #e6e6e6;
+    font-size: 18px;
+    line-height: 1;
+    color: #666666;
+}
+
+input:focus {
+    border-color: transparent !important;
+}
+
+input::-webkit-input-placeholder {
+    color: #999999;
+    padding: 20px;
+}
+
+input:-moz-placeholder {
+    color: #999999;
+}
+
+input::-moz-placeholder {
+    color: #999999;
+}
+
+input:-ms-input-placeholder {
+    color: #999999;
+}
+
+textarea.input1{
+    height: 80px;
+    border-radius: 3px;
+    padding: 8px 15px;
+}
+
+input.input1 {
+    height: 40px;
+    border-radius: 3px;
+    padding: 2px 15px;
+}
+
+input.input2 {
+    height: 40px;
+    border-radius: 3px;
+    padding: 2px 15px;
+}
+
+.wrap-input1 {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+}
+
+.wrap-input2 {
+    position: relative;
+    width: 20%;
+    z-index: 1;
+    padding: 3px;
+}
+
+.wrap-input1 .mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 0.8375em 0;
+}

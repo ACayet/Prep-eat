@@ -19,7 +19,6 @@ export class AccueilComponent implements OnInit {
   ngOnInit(): void {
     this.recipeService.getAllRecipes().subscribe(
       (data) => {
-        console.log(data[1])
         this.recipes = data;
         this.recipesDefined = false
       },
