@@ -30,6 +30,7 @@ export class GuestGuard implements CanActivate{
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+
     if(sessionStorage.getItem('USER') !==  null) {
       this.router.navigate(['/accueil']);
     } else {

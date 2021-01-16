@@ -37,6 +37,7 @@ export class AddRecipeComponent implements OnInit {
     this.modalService.open(content, { centered: true, size: 'lg' }).result.then((result) => {},
     (dismiss) => {
       this.addRecipeForm.reset()
+      this.success = false;
     });
   }
 

@@ -59,6 +59,7 @@ export class EditRecipeComponent implements OnInit {
         sodium: this.recipe.sodium,
         rating: this.recipe.rating
       })
+      this.success = false;
     });
   }
 
