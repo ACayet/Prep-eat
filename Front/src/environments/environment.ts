@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiURL: 'https://prep-eat.ml/api/v1' 
+  apiURL: 'https://localhost:8443/api/v1' 
 };
 
 /*

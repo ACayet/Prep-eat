@@ -51,7 +51,7 @@ import { EditRecipeComponent } from './recipe/edit-recipe/edit-recipe.component'
           
           return JSON.parse(sessionStorage.getItem('USER')).jwtToken;
         },
-        allowedDomains: ["prep-eat.ml"],
+        allowedDomains: ["prep-eat.ml","localhost:8443"], //TODO : Put this list in the env variables
         disallowedRoutes: [environment.apiURL + '/users/login',environment.apiURL + '/users/register'],
         skipWhenExpired: true
       }   

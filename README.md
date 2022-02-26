@@ -1,10 +1,17 @@
 # Prep-eat
 
+## About the project
+
+This project is a website which can help you cook by at term giving exemple of receipes and meals based on a number of required Kcal or other nutriments such as protein, salt, etc...
+
 ## Front End Instructions
 
-### Lorem Ipsum
+### Requirements Front
 
-Lorem Ipsum
+You need to have these programs installated in order for the front end to work succesfully :
+
+* @Angular/cli installed globaly
+* NodeJS with npm
 
 ## Back End Instructions
 
@@ -12,7 +19,7 @@ Lorem Ipsum
 
 We adapted a backend project with security (SSL, CORS, Authentication, API Key, etc...) with new methods to match our project idea (A cooking application)
 
-### Requirements
+### Requirements Back
 
 You need to have these programs installated in order for the back end to work succesfully :
 
@@ -41,7 +48,7 @@ Create a `.env` file containing the following keys :
 ### Database Datas
 
 We are using a free dataset from internet to add receipies to our project it can be found in `data/data.json`.
-It is automaticaly added to the database at the start of the app for the first time.
+It is automaticaly added to the database at the start of the app for the first time or if the `receipes` collection is removed.
 
 ### API Documentation
 
@@ -49,6 +56,7 @@ Documentation about the API can be found at [https://localhost:8443/api/v1/docs/
 
 ### Make the back end start
 
-* Now you can type : `npm install`
+* First, go in the `Webservice` folder
+* Then type `npm install` to install the requiered dependencies
 * You can start your server with `npm run start` and open a new web browser and type : `http://localhost:8080` in a browser and you should be redirected to your HTTPS project (`https://localhost:8443`)
 * Congrats ! Your HTTPS Support works :+1:
