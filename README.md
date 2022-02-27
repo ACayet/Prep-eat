@@ -10,21 +10,28 @@ This project is a website which can help you cook by at term giving exemple of r
 
 You need to have these programs installated in order for the front end to work succesfully :
 
-* @Angular/cli installed globaly
-* NodeJS with npm
+* @Angular/cli installed globaly (Works with Angular cli V11.0.5)
+* NodeJS with npm (Works with NodeJS V16.14)
+
+### Make the front-end start
+
+* First, go in the `Front/` folder
+* Then type `npm install` to get the needed dependencies
+* You can start the webserver with the `ng serve` command. The server will be accessible at `http://localhost:4200/`. Note that this is a dev server.
+* To build all the necessary files for production use the command `ng build --prod` and look inside the `dist/` folder.
 
 ## Back End Instructions
 
 ### Explainings
 
-We adapted a backend project with security (SSL, CORS, Authentication, API Key, etc...) with new methods to match our project idea (A cooking application)
+It is a web rest API used by the front-end to interact with the database. It has many security build in (SSL, CORS, Authentication, API Key, etc...) with any methods needed by the application.
 
 ### Requirements Back
 
 You need to have these programs installated in order for the back end to work succesfully :
 
-* MongoDB
-* NodeJS with npm
+* MongoDB (Works with MongoDB 4.2.6)
+* NodeJS with npm (Works with NodeJS V16.14+)
 
 ### Environment Variables (.env)
 
@@ -54,9 +61,14 @@ It is automaticaly added to the database at the start of the app for the first t
 
 Documentation about the API can be found at [https://localhost:8443/api/v1/docs/](https://localhost:8443/api/v1/docs/)
 
-### Make the back end start
+### CORS : Cross-Origin Ressource Sharing
 
-* First, go in the `Webservice` folder
+CORS is a middleware that will allow (or not) a request if it is sent by another domain that the one in which API is running.
+In our case the file `whitelist.json` needs to be updated to integrate any domain that will request the API (the front's domain for example)
+
+### Make the back-end start
+
+* First, go in the `Webservice/` folder
 * Then type `npm install` to install the requiered dependencies
 * You can start your server with `npm run start` and open a new web browser and type : `http://localhost:8080` in a browser and you should be redirected to your HTTPS project (`https://localhost:8443`)
 * Congrats ! Your HTTPS Support works :+1:
