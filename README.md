@@ -13,6 +13,13 @@ You need to have these programs installated in order for the front end to work s
 * @Angular/cli installed globaly (Works with Angular cli V11.0.5)
 * NodeJS with npm (Works with NodeJS V16.14)
 
+### Dev and Prod environnements files
+
+The files `environment.ts` and `environment.prod.ts` are used respectively for development and production build. They contains the following keys :
+
+* `apiURL` - The API Url used in the application to request receipes, users, favorites etc...
+* `apiDomain` - The domain name where the API is deployed to be used as a whitelisted domain to be used with user's bearer tokens
+
 ### Make the front-end start
 
 * First, go in the `Front/` folder
@@ -65,6 +72,16 @@ Documentation about the API can be found at [https://localhost:8443/api/v1/docs/
 
 CORS is a middleware that will allow (or not) a request if it is sent by another domain that the one in which API is running.
 In our case the file `whitelist.json` needs to be updated to integrate any domain that will request the API (the front's domain for example)
+
+### Difference between bin/www and bin/wwws
+
+The `bin/` folder contains two different files `www` and `wwws` both used to start the web serveur but each in its own way.
+`wwws` is used to start a SSL secured webserver (HTTPS) using `cert.pem` certificate along with the Rsa key `key.pem`. Those two files are generated using the [OpenSSL](#OpenSSL-(certification-for-HTTPS-support)-on-windows) section of this document.
+`www` is used to start a basic unsecured webserver (HTTP), we will mainly use this file to deploy on production builds and in docker / kubernetes containers.
+
+### Docker and kubernetes
+
+//TODO
 
 ### Make the back-end start
 
