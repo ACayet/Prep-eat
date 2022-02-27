@@ -76,7 +76,7 @@ In our case the file `whitelist.json` needs to be updated to integrate any domai
 ### Difference between bin/www and bin/wwws
 
 The `bin/` folder contains two different files `www` and `wwws` both used to start the web serveur but each in its own way.
-`wwws` is used to start a SSL secured webserver (HTTPS) using `cert.pem` certificate along with the Rsa key `key.pem`. Those two files are generated using the [OpenSSL](#OpenSSL-(certification-for-HTTPS-support)-on-windows) section of this document.
+`wwws` is used to start a SSL secured webserver (HTTPS) using `cert.pem` certificate along with the Rsa key `key.pem`. Those two files are generated using the [OpenSSL](#openssl-certification-for-https-support-on-windows) section of this document.
 `www` is used to start a basic unsecured webserver (HTTP), we will mainly use this file to deploy on production builds and in docker / kubernetes containers.
 
 ### Docker and kubernetes
